@@ -8,10 +8,12 @@
 
 **Purpose**: Establish the web application structure and local development configuration.
 
-- [ ] T001 Create backend project structure in `backend/RSSFeedReader.Api/`
-- [ ] T002 Create frontend project structure in `frontend/RSSFeedReader.UI/`
-- [ ] T003 [P] Configure frontend appsettings in `frontend/RSSFeedReader.UI/wwwroot/appsettings.json`
-- [ ] T004 [P] Configure backend CORS and API base path in `backend/RSSFeedReader.Api/Program.cs`
+- [X] T001 Create backend project structure in `backend/RSSFeedReader.Api/`
+- [X] T002 Create frontend project structure in `frontend/RSSFeedReader.UI/`
+- [X] T003 [P] Configure frontend appsettings in `frontend/RSSFeedReader.UI/wwwroot/appsettings.json`
+- [X] T004 [P] Configure backend CORS and API base path in `backend/RSSFeedReader.Api/Program.cs`
+- [X] T019 [P] Create backend launch settings in `backend/RSSFeedReader.Api/Properties/launchSettings.json`
+- [X] T020 [P] Create frontend launch settings in `frontend/RSSFeedReader.UI/Properties/launchSettings.json`
 
 ---
 
@@ -19,11 +21,11 @@
 
 **Purpose**: Build the shared backend/frontend infrastructure required before implementing the subscription story.
 
-- [ ] T005 Create `backend/RSSFeedReader.Api/Models/Subscription.cs` to model subscription data.
-- [ ] T006 Create `backend/RSSFeedReader.Api/Services/SubscriptionStore.cs` with in-memory add/list storage.
-- [ ] T007 Create `backend/RSSFeedReader.Api/Controllers/SubscriptionsController.cs` with `GET /api/subscriptions` and `POST /api/subscriptions` endpoints.
-- [ ] T008 Create `frontend/RSSFeedReader.UI/Program.cs` setup with `HttpClient` configured from appsettings.
-- [ ] T009 Create `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor` as the only root page for the MVP.
+- [X] T005 Create `backend/RSSFeedReader.Api/Models/Subscription.cs` to model subscription data.
+- [X] T006 Create `backend/RSSFeedReader.Api/Services/SubscriptionStore.cs` with in-memory add/list storage.
+- [X] T007 Create `backend/RSSFeedReader.Api/Controllers/SubscriptionsController.cs` with `GET /api/subscriptions` and `POST /api/subscriptions` endpoints.
+- [X] T008 Create `frontend/RSSFeedReader.UI/Program.cs` setup with `HttpClient` configured from appsettings.
+- [X] T009 Create `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor` as the only root page for the MVP.
 
 ---
 
@@ -33,12 +35,12 @@
 
 **Independent Test**: Run the backend and frontend locally; add a URL in the UI; the list updates with the new subscription.
 
-- [ ] T010 [US1] Implement subscription input UI in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
-- [ ] T011 [US1] Implement `SubscriptionForm` validation for non-empty URL input in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
-- [ ] T012 [US1] Implement `GET /api/subscriptions` integration in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
-- [ ] T013 [US1] Implement `POST /api/subscriptions` integration in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
-- [ ] T014 [US1] Add frontend error handling and validation feedback in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
-- [ ] T015 [US1] Add backend request validation and 400 response handling in `backend/RSSFeedReader.Api/Controllers/SubscriptionsController.cs`.
+- [X] T010 [US1] Implement subscription input UI in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
+- [X] T011 [US1] Implement `SubscriptionForm` validation for non-empty URL input in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
+- [X] T012 [US1] Implement `GET /api/subscriptions` integration in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
+- [X] T013 [US1] Implement `POST /api/subscriptions` integration in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
+- [X] T014 [US1] Add frontend error handling and validation feedback in `frontend/RSSFeedReader.UI/Pages/Subscriptions.razor`.
+- [X] T015 [US1] Add backend request validation and 400 response handling in `backend/RSSFeedReader.Api/Controllers/SubscriptionsController.cs`.
 
 ---
 
@@ -46,9 +48,9 @@
 
 **Purpose**: Finalize the MVP with cleanup, documentation, and verification.
 
-- [ ] T016 [P] Remove any default Blazor demo pages and routes from `frontend/RSSFeedReader.UI/Pages/`
-- [ ] T017 [P] Update `README.md` or `specs/001-rss-subscriptions/quickstart.md` with exact run and verification steps.
-- [ ] T018 [P] Verify local end-to-end behavior using the feature quickstart in `specs/001-rss-subscriptions/quickstart.md`.
+- [X] T016 [P] Remove any default Blazor demo pages and routes from `frontend/RSSFeedReader.UI/Pages/`
+- [X] T017 [P] Update `README.md` or `specs/001-rss-subscriptions/quickstart.md` with exact run and verification steps.
+- [X] T018 [P] Verify local end-to-end behavior using the feature quickstart in `specs/001-rss-subscriptions/quickstart.md`.
 
 ---
 
@@ -66,7 +68,7 @@
 
 ## Summary
 
-- Total task count: 18
+- Total task count: 20
 - User Story 1 task count: 6
 - Suggested MVP scope: complete only Phase 1, Phase 2, and Phase 3 to deliver add/list subscription behavior.
 - Independent test criteria: add a URL and verify the updated list in the UI, with memory-only storage until restart.

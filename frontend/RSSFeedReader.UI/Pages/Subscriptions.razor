@@ -1,0 +1,104 @@
+@page "/"
+@inject HttpClient Http
+
+<h1>Subscriptions</h1>
+
+<div class="subscription-form">
+    <input @bind="subscriptionUrl" placeholder="Enter feed URL" class="subscription-input" />
+    <button @onclick="AddSubscription" class="subscription-button">Add</button>
+</div>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="error-message">@errorMessage</div>
+}
+
+@if (isLoading)
+{
+    <p>Loading subscriptions...</p>
+}
+else if (subscriptions.Count == 0)
+{
+    <p>No subscriptions have been added yet.</p>
+}
+else
+{
+    <ul class="subscription-list">
+        @foreach (var item in subscriptions)
+        {
+            <li>@item.Url <span class="subscription-date">(@item.CreatedAt.ToLocalTime():g)</span></li>
+        }
+    </ul>
+}
+
+@code {
+    private string subscriptionUrl = string.Empty;
+    private string? errorMessage;
+    private bool isLoading;
+    private List<SubscriptionItem> subscriptions = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadSubscriptionsAsync();
+    }
+
+    private async Task LoadSubscriptionsAsync()
+    {
+        isLoading = true;
+        errorMessage = null;
+
+        try
+        {
+            subscriptions = await Http.GetFromJsonAsync<List<SubscriptionItem>>("subscriptions") ?? new();
+        }
+        catch (Exception)
+        {
+            errorMessage = "Unable to load subscriptions from the backend.";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task AddSubscription()
+    {
+        errorMessage = null;
+
+        if (string.IsNullOrWhiteSpace(subscriptionUrl))
+        {
+            errorMessage = "Subscription URL is required.";
+            return;
+        }
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("subscriptions", new { Url = subscriptionUrl.Trim() });
+            if (response.IsSuccessStatusCode)
+            {
+                subscriptionUrl = string.Empty;
+                await LoadSubscriptionsAsync();
+            }
+            else
+            {
+                var errorResponse = await response.Content.ReadFromJsonAsync<ErrorResponse>();
+                errorMessage = errorResponse?.Error ?? "Could not add subscription.";
+            }
+        }
+        catch (Exception)
+        {
+            errorMessage = "Failed to connect to the subscription API.";
+        }
+    }
+
+    private sealed class SubscriptionItem
+    {
+        public string Url { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+    }
+
+    private sealed class ErrorResponse
+    {
+        public string? Error { get; set; }
+    }
+}
